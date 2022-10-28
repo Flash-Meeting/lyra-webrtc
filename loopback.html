@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charSet="utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Lyra on WebRTC</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+      table {
+        font-size: 0.7em;
+        overflow-y: auto;
+        text-align: right;
+        width: 100%;
+      }
+
+      th:nth-child(2), td:nth-child(2) {
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Lyra on WebRTC</h1>
+    <div>
+      <p>This sample shows <a href="https://ai.googleblog.com/2021/02/lyra-new-very-low-bitrate-codec-for.html" target="_blank">Lyra</a> on WebRTC MediaChannel.</p>
+      <p>Chrome can use L16 (16-bit PCM BigEndian) by changing SDP. In this sample, L16 is set in PeerConnection, and L16 is extracted in TransformStream of EncodedStream and encoded in Lyra by WASM.</p>
+      <p>In this sample, Lyra's RTX is Enabled. You can compare it to several codecs, all of which use similar features to Lyra's RTX. The result is a very small bit rate in silence.</p>
+    </div>
+    <div>
+      <button type="button" id="startButton">Start</button>
+      <label for="codecSelect"> Codec:</label>
+      <select id="codecSelect">
+        <option value="lyra">Lyra - 16ksps</option>
+        <option value="pcm">PCM - 16ksps,16bit</option>
+        <option value="opus">Opus - 48ksps,2ch</option>
+        <option value="g711">PCMA - 8ksps,8bit</option>
+      </select>
+      <button type="button" id="callButton" disabled>Call</button>
+      <button type="button" id="hangupButton" disabled>Hang Up</button>
+      <span id="bitrateSpan"></span>
+    </div>
+    <div>
+      <audio id="audioOutput" controls autoplay></audio>
+    </div>
+    <div>
+      <p class="warning">Warning: if you're not using headphones, pressing play will cause feedback.</p>
+    </div>
+    <div>
+      <h2>History</h2>
+      <table id="historyTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Codec</th>
+            <th>Max Bitrate (kbit/s)</th>
+            <th>Min Bitrate (kbit/s)</th>
+            <th>Average Bitrate (kbit/s)</th>
+            <th>Connected Time (s)</th>
+          </tr>
+        </thead>
+        <tbody id="historyTBody"></tbody>
+      </table>
+    </div>
+    <div>
+      <p>Thanks to <a href="https://ai.googleblog.com/2021/02/lyra-new-very-low-bitrate-codec-for.html" target="_blank">the team that developed Lyra</a> and to <a href="https://github.com/mayitayew/soundstream-wasm" target="_blank">mayitayew for making it work with WASM</a>.</p>
+      <p>This sample developed by <a href="https://meeting.dev/" target="_blank">WebMeeting Software Suite Team</a>.</p>
+      <p><a href="https://github.com/Flash-Meeting/lyra-webrtc" target="_blank">View source on GitHub</a></p>
+    </div>
+    <script type="module" src="./loopback.js" async></script>
+  </body>
+</html>
