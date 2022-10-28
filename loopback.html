@@ -23,7 +23,7 @@
     <div>
       <p>This sample shows <a href="https://ai.googleblog.com/2021/02/lyra-new-very-low-bitrate-codec-for.html" target="_blank">Lyra</a> on WebRTC MediaChannel.</p>
       <p>Chrome can use L16 (16-bit PCM BigEndian) by changing SDP. In this sample, L16 is set in PeerConnection, and L16 is extracted in TransformStream of EncodedStream and encoded in Lyra by WASM.</p>
-      <p>In this sample, Lyra's RTX is Enabled. You can compare it to several codecs, all of which use similar features to Lyra's RTX. The result is a very small bit rate in silence.</p>
+      <p>In this sample, Lyra's DTX is Enabled. You can compare it to several codecs, all of which use similar features to Lyra's DTX. The result is a very small bit rate in silence.</p>
     </div>
     <div>
       <button type="button" id="startButton">Start</button>
